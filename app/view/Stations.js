@@ -18,6 +18,12 @@ Ext.define("kitchenplayer-control.view.Stations", {
                         text: 'Play / Pause',
                         flex: 1
                     },
+                    {
+                        xtype: 'searchfield',
+                        placeholder: 'Search',
+                        name: 'searchfield',
+                        align: 'right'
+                    }
                 ]
             },
             {
