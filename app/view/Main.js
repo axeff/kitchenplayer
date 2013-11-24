@@ -1,14 +1,14 @@
-Ext.define('kitchenplayer-control.view.Main', {
+Ext.define('kitchenplayer.view.Main', {
     extend: 'Ext.ux.slidenavigation.View',
     xtype: 'main',
     fullscreen: true,
     requires: [
         'Ext.TitleBar',
         'Ext.Video',
-        'kitchenplayer-control.model.Station',
-        'kitchenplayer-control.view.Stations',
+        'kitchenplayer.model.Station',
+        'kitchenplayer.view.Stations',
         'Ext.dataview.List',
-        'kitchenplayer-control.view.Settings'
+        'kitchenplayer.view.Settings'
     ],
     
     config: {
@@ -68,6 +68,7 @@ Ext.define('kitchenplayer-control.view.Main', {
                         width: '100%',
                         items: [
                             {
+                                id: 'playpause',
                                 xtype: 'button',
                                 text: 'Play / Pause',
                                 align: 'left',
@@ -79,6 +80,7 @@ Ext.define('kitchenplayer-control.view.Main', {
                                 align: 'right',
                             },
                             {
+                                id: 'volumeSlider',
                                 xtype: 'sliderfield',
                                 label: 'Volume',
                                 value: 50,
@@ -100,12 +102,12 @@ Ext.define('kitchenplayer-control.view.Main', {
                 title: 'Control',
                 iconCls: 'home',
                 scrollable: true,
-                xclass: 'kitchenplayer-control.view.Stations'
+                xclass: 'kitchenplayer.view.Stations'
             },
             {
                 title: 'Settings',
                 iconCls: 'settings',
-                xclass: 'kitchenplayer-control.view.Settings'
+                xclass: 'kitchenplayer.view.Settings'
             }
         ]
     }

@@ -1,8 +1,8 @@
-Ext.define('kitchenplayer-control.store.Stations', {
+Ext.define('kitchenplayer.store.Stations', {
     extend: 'Ext.data.Store',
     
     config: {
-        model: 'kitchenplayer-control.model.Station',
+        model: 'kitchenplayer.model.Station',
         disableSelection: true,
         emptyText: '<p class="no-searches">Nothing found matching that search</p>',
         storeId: 'Stations',
@@ -15,13 +15,16 @@ Ext.define('kitchenplayer-control.store.Stations', {
         },
         data: [
             {
-                name: "FM4"
+                name: "FM4",
+                url: "http://dummy.org/fm4"
             },
             {
-                name: "FluxFM"
+                name: "FluxFM",
+                url: "http://dummy.org/fluxfm"
             },
             {
-                name: "Deutschlandradio"
+                name: "Deutschlandradio",
+                url: "http://dummy.org/deutschlandradio"
             }
         ]
     }

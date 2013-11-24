@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+var debugTitles = ["FluxFM", "FM4", "Radio PSR", "Soma FM", "MetalFM", "RadioEins", "Deutschlandradio", "SWR3", "Jump", "MDR", "JazzFM"];
+
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var uuid = require('node-uuid');
@@ -6,6 +8,7 @@ var fs = require('fs');
 var httpConnect = require('connect'),
     httpPort = 8080,
     socketPort = 1338;
+var volume, station, playpause;
 
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
@@ -31,8 +34,6 @@ function originIsAllowed(origin) {
   return true;
 }
 
-//simple array to keep connection references
-var connections = [];
 
 wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
@@ -48,19 +49,23 @@ wsServer.on('request', function(request) {
     connection.on('message', function(message) {
 
         var command = JSON.parse(message.utf8Data);
+    
+        console.log(command);
         
-        //register connection and store for later references
-        if(command.register){
-
-            connections[connection.id] = connection;
-            connection.sendUTF(JSON.stringify({connectionId:connection.id}));
+        if (command.volume) {
+            volume = command.volume;
+        }else if (command.playpause) {
+            playpause = command.playpause;
+        }else if (command.station) {
+            station = command.station.name;
         }
-        //process actual commands
-        else if(command.receiverId && command.receiverId in connections){
-            connections[command.receiverId].sendUTF(JSON.stringify({origin:connection.id,message:command.message}));
-        }
+    
         
         
+        connection.sendUTF(
+            JSON.stringify({
+                station: station
+            }));
 
     });
     connection.on('close', function(reasonCode, description) {

@@ -1,4 +1,4 @@
-Ext.define("kitchenplayer-control.view.Settings", {
+Ext.define("kitchenplayer.view.Settings", {
     extend: 'Ext.Container',
     requires: [
         'Ext.form.FieldSet'

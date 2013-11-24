@@ -1,4 +1,4 @@
-Ext.define("kitchenplayer-control.view.Stations", {
+Ext.define("kitchenplayer.view.Stations", {
     extend: 'Ext.Container',
     requires: [
         'Ext.field.Search'
@@ -11,7 +11,8 @@ Ext.define("kitchenplayer-control.view.Stations", {
             {
                 docked: 'top',
                 xtype: 'titlebar',
-                title: 'Heimcontrol - Kitchen'
+                title: 'Heimcontrol - Kitchen',
+                id: 'titlebar'
             },
             {
                 type: 'vbox',
@@ -19,6 +20,7 @@ Ext.define("kitchenplayer-control.view.Stations", {
                 items: [
                     
                     {
+                        id: 'stationsList',
                         flex: 2,
                         grouped: true,
                         xtype: 'list',
@@ -29,7 +31,9 @@ Ext.define("kitchenplayer-control.view.Stations", {
                             e.stopEvent();
                             //ToDo: Send nodejs command to play station
                             // ...
-                            Ext.Msg.alert('Switched to station:', record.get('name'));
+                            
+                            this.fireEvent('radioStationSelected', record);
+                            
                         },
                     }
 

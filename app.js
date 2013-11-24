@@ -16,13 +16,13 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'kitchenplayer-control': 'app',
-    'Ext.ux': './ux'
+    'kitchenplayer': 'app',
+    'Ext.ux': './ux'    
 });
 //</debug>
 
 Ext.application({
-    name: 'kitchenplayer-control',
+    name: 'kitchenplayer',
 
     requires: [
         'Ext.MessageBox'
@@ -34,6 +34,10 @@ Ext.application({
     
     stores: [
         'Stations'
+    ],
+    
+    controllers: [
+        'RadioController'
     ],
 
     icon: {
@@ -55,11 +59,14 @@ Ext.application({
     },
 
     launch: function() {
+        
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
+        window.Radio = new Radio('localhost',1338, function(message){Ext.ComponentManager.get('titlebar').setTitle(message);});
+
         // Initialize the main view
-        Ext.Viewport.add(Ext.create('kitchenplayer-control.view.Main'));
+        Ext.Viewport.add(Ext.create('kitchenplayer.view.Main'));
     },
 
     onUpdated: function() {

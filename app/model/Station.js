@@ -1,4 +1,4 @@
-Ext.define('kitchenplayer-control.model.Station', {
+Ext.define('kitchenplayer.model.Station', {
     extend: 'Ext.data.Model',
     requires: [
         'Ext.data.identifier.Uuid'
