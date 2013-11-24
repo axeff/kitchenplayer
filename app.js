@@ -63,8 +63,6 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        window.Radio = new Radio('localhost',1338, function(message){Ext.ComponentManager.get('titlebar').setTitle(message);});
-
         // Initialize the main view
         Ext.Viewport.add(Ext.create('kitchenplayer.view.Main'));
     },

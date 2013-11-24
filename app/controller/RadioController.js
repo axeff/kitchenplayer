@@ -4,10 +4,7 @@ Ext.define('kitchenplayer.controller.RadioController', {
 
     ],
     config: {
-        /**
-         * @private
-         */
-        viewCache: [],
+        radio: false,
         refs: {
             playpause: "#playpause",
             stationsList: '#stationsList',
@@ -15,7 +12,7 @@ Ext.define('kitchenplayer.controller.RadioController', {
         },
         control: {
             playpause: {
-                tap: 'playpauseHandler'
+                change: 'playpauseHandler'
             },
             stationsList: {
                 radioStationSelected: 'radioStationSelectedHandler'
@@ -28,16 +25,33 @@ Ext.define('kitchenplayer.controller.RadioController', {
 
     },
     
-    radioStationSelectedHandler: function(item){
-        window.Radio.playStation(item.get('name'), item.get('url'));
+    launch: function(){
+        this.setRadio(new Radio('localhost',1338, function(message){
+            console.log(message);
+            Ext.ComponentManager.get('titlebar').setTitle(message.station);
+            Ext.ComponentManager.get('volumeSlider').setValue(message.volume);
+            this.togglePlaypause(message.playpause);
+        }.bind(this)));
+
+    },
+    togglePlaypause: function(value){
+        var toggle = Ext.ComponentManager.get('playpause');
+        toggle.setValue(value);
     },
     
-    playpauseHandler: function(){
-        window.Radio.playpause();
+    radioStationSelectedHandler: function(item){
+        this.getRadio().playStation(item.get('name'), item.get('url'));
+    },
+    
+    playpauseHandler: function(a,b,event, value){
+        //prevent triggering event when value get's changed by websocket
+        if (typeof event == "object"){
+            this.getRadio().playpause(value);
+        }
     },
     
     volumeSliderHandler: function(a,b,c, percentage){
-        window.Radio.volume(percentage);
+        this.getRadio().volume(percentage);
     }
     
     

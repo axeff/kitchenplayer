@@ -8,7 +8,8 @@ Ext.define('kitchenplayer.view.Main', {
         'kitchenplayer.model.Station',
         'kitchenplayer.view.Stations',
         'Ext.dataview.List',
-        'kitchenplayer.view.Settings'
+        'kitchenplayer.view.Settings',
+        'Ext.field.Slider'
     ],
     
     config: {
@@ -56,7 +57,7 @@ Ext.define('kitchenplayer.view.Main', {
          */
         list: {
             maxDrag: 400,
-            width: 400,
+            width: 200,
             items: [{
                 xtype: 'toolbar',
                 docked: 'top',
@@ -69,8 +70,8 @@ Ext.define('kitchenplayer.view.Main', {
                         items: [
                             {
                                 id: 'playpause',
-                                xtype: 'button',
-                                text: 'Play / Pause',
+                                xtype: 'togglefield',
+                                label: 'Play / Pause',
                                 align: 'left',
                             },
                             {

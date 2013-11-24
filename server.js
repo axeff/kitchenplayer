@@ -49,24 +49,26 @@ wsServer.on('request', function(request) {
 
         var command = JSON.parse(message.utf8Data);
     
-        console.log(command);
         
-        if (command.volume) {
+        if ('volume' in command) {
             volume = command.volume;
-        }else if (command.playpause) {
+        }else if ('playpause' in command) {
             playpause = command.playpause;
-        }else if (command.station) {
+        }else if ('station' in command) {
             station = command.station.name;
         }
     
+        var broadcastMessage = JSON.stringify({
+            station: station,
+            volume: volume,
+            playpause: playpause
+        });
+    
+        console.log(broadcastMessage);
         
-        
-        connection.sendUTF(
-            JSON.stringify({
-                station: station
-            }));
+        this.broadcastUTF(broadcastMessage);
 
-    });
+    }.bind(this));
     connection.on('close', function(reasonCode, description) {
         console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
     });
