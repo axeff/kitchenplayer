@@ -57,7 +57,7 @@ Ext.define('kitchenplayer.view.Main', {
          */
         list: {
             maxDrag: 400,
-            width: 200,
+            width: 250,
             items: [{
                 xtype: 'toolbar',
                 docked: 'top',
@@ -71,7 +71,7 @@ Ext.define('kitchenplayer.view.Main', {
                             {
                                 id: 'playpause',
                                 xtype: 'togglefield',
-                                label: 'Play / Pause',
+                                /*label: 'Play / Pause',*/
                                 align: 'left',
                             },
                             {
@@ -83,7 +83,7 @@ Ext.define('kitchenplayer.view.Main', {
                             {
                                 id: 'volumeSlider',
                                 xtype: 'sliderfield',
-                                label: 'Volume',
+                                /*label: 'Volume',*/
                                 value: 50,
                                 minValue: 0,
                                 maxValue: 100
