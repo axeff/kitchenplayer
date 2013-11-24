@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-var debugTitles = ["FluxFM", "FM4", "Radio PSR", "Soma FM", "MetalFM", "RadioEins", "Deutschlandradio", "SWR3", "Jump", "MDR", "JazzFM"];
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
