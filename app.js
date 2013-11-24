@@ -16,7 +16,8 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'kitchenplayer-control': 'app'
+    'kitchenplayer-control': 'app',
+    'Ext.ux': './ux'
 });
 //</debug>
 

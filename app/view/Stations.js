@@ -1,7 +1,7 @@
 Ext.define("kitchenplayer-control.view.Stations", {
     extend: 'Ext.Container',
     requires: [
-
+        'Ext.field.Search'
     ],
     xtype: 'stations',
     
@@ -11,26 +11,13 @@ Ext.define("kitchenplayer-control.view.Stations", {
             {
                 docked: 'top',
                 xtype: 'titlebar',
-                title: 'Heimcontrol - Kitchen',
-                items: [
-                    {
-                        xtype: 'button',
-                        text: 'Play / Pause',
-                        flex: 1
-                    },
-                    {
-                        xtype: 'searchfield',
-                        placeholder: 'Search',
-                        name: 'searchfield',
-                        align: 'right'
-                    }
-                ]
+                title: 'Heimcontrol - Kitchen'
             },
             {
                 type: 'vbox',
                 layout: 'fit',
                 items: [
-
+                    
                     {
                         flex: 2,
                         grouped: true,
