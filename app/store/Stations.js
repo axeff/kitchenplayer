@@ -16,15 +16,23 @@ Ext.define('kitchenplayer.store.Stations', {
         data: [
             {
                 name: "FM4",
-                url: "http://dummy.org/fm4"
+                url: "http://mp3stream1.apasf.apa.at:8000/listen.pls"
             },
             {
                 name: "FluxFM",
-                url: "http://dummy.org/fluxfm"
+                url: "http://www.fluxfm.de/wp-content/themes/motorfm/fluxfm.pls"
             },
             {
-                name: "Deutschlandradio",
-                url: "http://dummy.org/deutschlandradio"
+                name: "Deutschlandradio Kultur",
+                url: "http://www.deutschlandradio.de/streaming/dkultur.m3u"
+            },
+            {
+                name: "Deutschlandfunk",
+                url: "http://www.deutschlandradio.de/streaming/dkultur.m3u"
+            },
+            {
+                name: "SWR3",
+                url: "http://mp3-live.swr3.de/swr3_m.pls"
             }
         ]
     }
