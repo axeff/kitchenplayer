@@ -73,12 +73,13 @@ Ext.define('kitchenplayer.view.Main', {
                                 xtype: 'togglefield',
                                 /*label: 'Play / Pause',*/
                                 align: 'left',
+                                value: 1
                             },
                             {
                                 xtype: 'searchfield',
                                 placeholder: 'Search',
                                 name: 'searchfield',
-                                align: 'right',
+                                align: 'right'
                             },
                             {
                                 id: 'volumeSlider',

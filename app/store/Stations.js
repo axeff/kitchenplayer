@@ -20,7 +20,7 @@ Ext.define('kitchenplayer.store.Stations', {
             },
             {
                 name: "FluxFM",
-                url: "http://www.fluxfm.de/wp-content/themes/motorfm/fluxfm.pls"
+                url: "http://www.fluxfm.de:80/wp-content/themes/motorfm/fluxfm.pls"
             },
             {
                 name: "Deutschlandradio Kultur",

@@ -4,10 +4,13 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 var uuid = require('node-uuid');
 var fs = require('fs');
+var spawn = require('child_process').spawn;
+var exec = require('child_process').exec;
 var httpConnect = require('connect'),
     httpPort = 8080,
     socketPort = 1338;
-var volume, station, playpause;
+var mplayer = false,volume, station, playpause;
+
 
 var server = http.createServer(function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
@@ -52,10 +55,27 @@ wsServer.on('request', function(request) {
         
         if ('volume' in command) {
             volume = command.volume;
+
+            exec('amixer sset PCM ' + volume + '%');
         }else if ('playpause' in command) {
             playpause = command.playpause;
+
+            if (playpause){
+                exec('amixer -q set PCM unmute');
+            }else {
+                exec('amixer -q set PCM mute');
+            }
         }else if ('station' in command) {
             station = command.station.name;
+
+            if (mplayer){
+                mplayer.kill('SIGHUP');
+            }
+
+            mplayer  = spawn('mplayer', [command.station.url]);
+            mplayer.on('close', function (code, signal) {
+                console.log('child process terminated due to receipt of signal '+signal);
+            });
         }
     
         var broadcastMessage = JSON.stringify({
