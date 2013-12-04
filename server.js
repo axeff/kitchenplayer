@@ -1,15 +1,14 @@
 #!/usr/bin/env node
-
+var Radio = require('./radio');
 var WebSocketServer = require('websocket').server;
 var http = require('http');
-var uuid = require('node-uuid');
 var fs = require('fs');
-var spawn = require('child_process').spawn;
-var exec = require('child_process').exec;
+
+
 var httpConnect = require('connect'),
     httpPort = 8080,
     socketPort = 1338;
-var mplayer = false,volume, station, playpause;
+var station, myRadio = Radio();
 
 
 var server = http.createServer(function(request, response) {
@@ -32,61 +31,51 @@ wsServer = new WebSocketServer({
 });
 
 function originIsAllowed(origin) {
-  // put logic here to detect whether the specified origin is allowed.
-  return true;
+    // put logic here to detect whether the specified origin is allowed.
+    return true;
 }
 
 
 wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
-      // Make sure we only accept requests from an allowed origin
-      request.reject();
-      console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
-      return;
+        // Make sure we only accept requests from an allowed origin
+        request.reject();
+        console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
+        return;
     }
 
     var connection = request.accept('peer-protocol', request.origin);
-    connection.id = uuid.v4();
+
     console.log((new Date()) + ' Connection accepted.');
     connection.on('message', function(message) {
 
         var command = JSON.parse(message.utf8Data);
-    
-        
+
+
         if ('volume' in command) {
-            volume = command.volume;
 
-            exec('amixer sset PCM ' + volume + '%');
+            myRadio.setVolume(command.volume);
+
         }else if ('playpause' in command) {
-            playpause = command.playpause;
 
-            if (playpause){
-                exec('amixer -q set PCM unmute');
-            }else {
-                exec('amixer -q set PCM mute');
-            }
+            myRadio.setPlaypause(command.playpause);
+
         }else if ('station' in command) {
-            station = command.station.name;
 
-            if (mplayer){
-                mplayer.kill('SIGHUP');
-            }
+            myRadio.stream(command.station);
 
-            mplayer  = spawn('mplayer', [command.station.url]);
-            mplayer.on('close', function (code, signal) {
-                console.log('child process terminated due to receipt of signal '+signal);
-            });
         }
-    
+
         var broadcastMessage = JSON.stringify({
-            station: station,
-            volume: volume,
-            playpause: playpause
+            station: myRadio.getStation(),
+            volume: myRadio.getVolume(),
+            playpause: myRadio.getPlaypause()
         });
-    
+
         console.log(broadcastMessage);
-        
+
         this.broadcastUTF(broadcastMessage);
+
 
     }.bind(this));
     connection.on('close', function(reasonCode, description) {
@@ -94,7 +83,7 @@ wsServer.on('request', function(request) {
     });
 });
 
-
-httpConnect.createServer(httpConnect.static(__dirname)).listen(httpPort);
+httpConnect.createServer(httpConnect.static(__dirname)).listen(httpPort, "0.0.0.0");
+httpConnect.logger();
 console.log('Http Listening on ' + httpPort + '...');
 console.log('Press Ctrl + C to stop.');

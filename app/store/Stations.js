@@ -20,19 +20,43 @@ Ext.define('kitchenplayer.store.Stations', {
             },
             {
                 name: "FluxFM",
-                url: "http://www.fluxfm.de:80/wp-content/themes/motorfm/fluxfm.pls"
-            },
-            {
-                name: "Deutschlandradio Kultur",
-                url: "http://www.deutschlandradio.de/streaming/dkultur.m3u"
+                url: " http://www.fluxfm.de/stream-berlin"
             },
             {
                 name: "Deutschlandfunk",
-                url: "http://www.deutschlandradio.de/streaming/dkultur.m3u"
+                url: "http://www.dradio.de/streaming/dradio_ogg.pls"
             },
             {
                 name: "SWR3",
                 url: "http://mp3-live.swr3.de/swr3_m.pls"
+            },
+            {
+                name: "JazzRadio 101.9",
+                url: "http://www.jazzradio.net/docs/stream/jazzradio.pls"
+            },
+            {
+                name: "K&ouml;ln Campus Radio",
+                url: "http://koelncampus.uni-koeln.de:7999/listen.pls"
+            },
+            {
+                name: "MDR Figaro",
+                url: "http://avw.mdr.de/livestreams/mdr_figaro_live_128.m3u"
+            },
+            {
+                name: "RauteMusik #Metal",
+                url: "http://metal-high.rautemusik.fm/listen.pls"
+            },
+            {
+                name: "RauteMusik #Elektro",
+                url: "http://house-high.rautemusik.fm/listen.pls"
+            },
+            {
+                name: "RauteMusik #DubStep",
+                url: "http://drumstep-high.rautemusik.fm/listen.pls"
+            },
+            {
+                name: "Radio Eins",
+                url: "http://www.radioeins.de/live.m3u"
             }
         ]
     }

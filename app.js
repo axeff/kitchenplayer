@@ -16,8 +16,7 @@
 //<debug>
 Ext.Loader.setPath({
     'Ext': 'touch/src',
-    'kitchenplayer': 'app',
-    'Ext.ux': './ux'    
+    'kitchenplayer': 'app'
 });
 //</debug>
 
@@ -38,6 +37,10 @@ Ext.application({
     
     controllers: [
         'RadioController'
+    ],
+
+    models: [
+        'Station'
     ],
 
     icon: {
