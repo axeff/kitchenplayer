@@ -43,20 +43,33 @@ Ext.define('kitchenplayer.store.Stations', {
                 url: "http://avw.mdr.de/livestreams/mdr_figaro_live_128.m3u"
             },
             {
-                name: "RauteMusik #Metal",
-                url: "http://metal-high.rautemusik.fm/listen.pls"
-            },
-            {
-                name: "RauteMusik #Elektro",
-                url: "http://house-high.rautemusik.fm/listen.pls"
-            },
-            {
-                name: "RauteMusik #DubStep",
-                url: "http://drumstep-high.rautemusik.fm/listen.pls"
-            },
-            {
                 name: "Radio Eins",
                 url: "http://www.radioeins.de/live.m3u"
+            },
+            {
+                name: "Groove Salad",
+                url: "http://somafm.com/groovesalad.pls",
+                info: "Groove Salad: A nicely chilled plate of ambient/downtempo beats and grooves."
+            },
+            {
+                name: "Dub Step Beyond",
+                url: "http://somafm.com/dubstep.pls",
+                info: "Dub Step Beyond: Dubstep, Dub and Deep Bass. May damage speakers at high volume."
+            },
+            {
+                name: "Indie Pop Rocks!",
+                url: "http://somafm.com/indiepop.pls",
+                info: "Indie Pop Rocks!: New and classic favorite indie pop tracks."
+            },
+            {
+                name: "Sonic Universe",
+                url: "http://somafm.com/sonicuniverse192.pls",
+                info: "Sonic Universe: Transcending the world of jazz with eclectic, avant-garde takes on tradition."
+            },
+            {
+                name: "Digitalis",
+                url: "http://somafm.com/digitalis.pls",
+                info: "Digitalis: Digitally affected analog rock to calm the agitated heart."
             }
         ]
     }

@@ -8,6 +8,7 @@ Ext.define('kitchenplayer.model.Station', {
         fields: [
             {name: 'name',  type: 'string'},
             {name: 'url',  type: 'string'},
+            {name: 'info',  type: 'string'},
         ],
             validations: [
             {type: 'presence',  field: 'name'},
