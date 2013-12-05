@@ -12,6 +12,7 @@
 
 // DO NOT DELETE - this directive is required for Sencha Cmd packages to work.
 //@require @packageOverrides
+//@require lib/radiocontrol/Radio.js
 
 //<debug>
 Ext.Loader.setPath({

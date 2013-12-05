@@ -49,8 +49,10 @@
             "update": "delta"
         },
         {
-            "path": "lib/radiocontrol/Radio.js"
-        }
+            "path": "lib/radiocontrol/Radio.js",
+            "update": "delta",
+            "skipFrameworkFile": true
+}
     ],
 
     /**
