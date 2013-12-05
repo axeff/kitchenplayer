@@ -25,7 +25,7 @@ Ext.define('kitchenplayer.controller.RadioController', {
     },
     
     launch: function(){
-        this.setRadio(new Radio('192.168.1.2',1338, function(message){
+        this.setRadio(new Radio(window.location.hostname,1338, function(message){
             console.log(message);
             Ext.ComponentManager.get('titlebar').setTitle(message.station);
             Ext.ComponentManager.get('volumeSlider').setValue(message.volume);

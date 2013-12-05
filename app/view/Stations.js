@@ -56,19 +56,21 @@ Ext.define("kitchenplayer.view.Stations", {
                     {
                         id: 'stationsList',
                         flex: 2,
-                        grouped: true,
+                        grouped: false,
                         xtype: 'list',
                         store: "Stations",
                         itemTpl: "<div>{name}</div>",
                         disclosure: true,
+                        listeners: {
+                            itemtap: function(a,b,c,record){
+                                Ext.Msg.alert(record.get('name'),record.get('info'));
+                            }
+                        },
                         onItemDisclosure: function(record, item, index, e) {
                             e.stopEvent();
-                            //ToDo: Send nodejs command to play station
-                            // ...
-                            
                             this.fireEvent('radioStationSelected', record);
                             
-                        },
+                        }
                     }
 
                 ]
