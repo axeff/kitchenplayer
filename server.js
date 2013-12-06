@@ -3,6 +3,8 @@ var Radio = require('./radio');
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var fs = require('fs');
+var gpio = require("rpi-gpio");
+gpio.setup(11, gpio.DIR_OUT);
 
 
 var httpConnect = require('connect'),
@@ -35,6 +37,10 @@ function originIsAllowed(origin) {
     return true;
 }
 
+function turnSpeakers(on){
+
+    gpio.write(11,on);
+}
 
 wsServer.on('request', function(request) {
     if (!originIsAllowed(request.origin)) {
@@ -57,11 +63,12 @@ wsServer.on('request', function(request) {
             myRadio.setVolume(command.volume);
 
         }else if ('playpause' in command) {
-
+            turnSpeakers(command.playpause);
             myRadio.setPlaypause(command.playpause);
 
         }else if ('station' in command) {
-
+            turnSpeakers(true);
+            myRadio.setPlaypause(true);
             myRadio.stream(command.station);
 
         }

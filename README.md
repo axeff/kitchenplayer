@@ -9,7 +9,7 @@ on your raspberry pi run:
 =========================
 
 <code>
-  nodejs server.js
+  sudo nodejs server.js //_sudo_ if you use a relay over gpio for turning on your speakers
 </code>
 
 or - if you have Sencha CMD up and running build production environment to minify app:
